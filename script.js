@@ -1,16 +1,16 @@
 const PAGES = [
       { id: 'kindergarten', name: 'Дитячий садочок', photos: [
-        "images/Дитячий садочок/1.jpg",
-        "images/Дитячий садочок/2.jpg",
-        "images/Дитячий садочок/3.jpg",
-        "images/Дитячий садочок/4.jpg",
-        "images/Дитячий садочок/5.jpg",
-        "images/Дитячий садочок/6.jpg",
-        "images/Дитячий садочок/7.jpg",
-        "images/Дитячий садочок/8.jpg",
-        "images/Дитячий садочок/9.jpg",
-        "images/Дитячий садочок/10.jpg",
-        "images/Дитячий садочок/11.jpg"
+        "img/Дитячий садочок/1.jpg",
+        "img/Дитячий садочок/2.jpg",
+        "img/Дитячий садочок/3.jpg",
+        "img/Дитячий садочок/4.jpg",
+        "img/Дитячий садочок/5.jpg",
+        "img/Дитячий садочок/6.jpg",
+        "img/Дитячий садочок/7.jpg",
+        "img/Дитячий садочок/8.jpg",
+        "img/Дитячий садочок/9.jpg",
+        "img/Дитячий садочок/10.jpg",
+        "img/Дитячий садочок/11.jpg"
       ]},
       { id: 'school days', name: 'Шкільні будні', photos: [
         "images/Шкільні будні/1.jpg",
@@ -222,3 +222,4 @@ const PAGES = [
 
     renderPage(PAGES[0].id);
    
+
