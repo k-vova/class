@@ -2,8 +2,8 @@ const PAGES = [
       { id: 'kindergarten', name: 'Дитячий садочок', photos: Array.from({length: 11}, (_,i)=>`img/Дитячий садочок/${i+1}.jpg`) },
       { id: 'school-days', name: 'Шкільні будні', photos: Array.from({length: 41}, (_,i)=>`img/Шкільні будні/${i+1}.jpg`) },
       { id: 'group-photos', name: 'Колективні фото', photos: Array.from({length: 11}, (_,i)=>`img/Колективні фото/${i+1}.jpg`) },
-      { id: 'excursions', name: 'Екскурсії', photos: Array.from({length: 22}, (_,i)=>`img/Екскурсії/${i+1}.jpg`) },
-      { id: 'meet97-07', name: 'Зустріч 1997-2007р', photos: Array.from({length: 32}, (_,i)=>`img/Зустріч 1997-2007р/${i+1}.jpg`) },
+      { id: 'excursions', name: 'Екскурсії', photos: Array.from({length: 30}, (_,i)=>`img/Екскурсії/${i+1}.jpg`) },
+      { id: 'meet97-07', name: 'Зустріч 1997-2007р', photos: Array.from({length: 35}, (_,i)=>`img/Зустріч 1997-2007р/${i+1}.jpg`) },
       { id: 'meet2017', name: 'Зустріч 2017р', photos: Array.from({length: 22}, (_,i)=>`img/Зустріч 2017р/${i+1}.jpg`) },
       { id: 'meet2022-25', name: 'Зустріч 2022-2025р', photos: Array.from({length: 9}, (_,i)=>`img/Зустріч 2022-2025р/${i+1}.jpg`) },
       { id: 'video', name: 'Відео', videoUrl: 'https://www.youtube.com/embed/9uBKizur3ZM' }
@@ -98,4 +98,5 @@ const PAGES = [
     }
 
     // Стартова сторінка
+
     renderPage(PAGES[0].id);
