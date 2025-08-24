@@ -1,3 +1,16 @@
+/* Для планшетів */
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column;
+  }
+}
+
+/* Для мобільних */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+}
 body {
       font-family: Arial, sans-serif;
       background: linear-gradient(to bottom, #f5f3f5, #c5c1c5);
@@ -75,3 +88,4 @@ body {
       border-radius: 12px;
 
     }
+
