@@ -5,7 +5,7 @@ const PAGES = [
       { id: 'excursions', name: 'Екскурсії', photos: Array.from({length: 30}, (_,i)=>`img/Екскурсії/${i+1}.jpg`) },
       { id: 'meet97-07', name: 'Зустріч 1997-2007р', photos: Array.from({length: 35}, (_,i)=>`img/Зустріч 1997-2007р/${i+1}.jpg`) },
       { id: 'meet2017', name: 'Зустріч 2017р', photos: Array.from({length: 22}, (_,i)=>`img/Зустріч 2017р/${i+1}.jpg`) },
-      { id: 'meet2022-25', name: 'Зустріч 2022-2025р', photos: Array.from({length: 9}, (_,i)=>`img/Зустріч 2022-2025р/${i+1}.jpg`) },
+      { id: 'meet2022-25', name: 'Зустріч 2022-2025р', photos: Array.from({length: 12}, (_,i)=>`img/Зустріч 2022-2025р/${i+1}.jpg`) },
       { id: 'video', name: 'Відео', videoUrl: 'https://www.youtube.com/embed/9uBKizur3ZM' }
     ];
 
@@ -100,3 +100,4 @@ const PAGES = [
     // Стартова сторінка
 
     renderPage(PAGES[0].id);
+
