@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Однокласники — випуск 1987</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Однокласники. Випуск Ульянівської середньої школи №2 — 1987 рік</h1>
+  </header>
+
+  <nav id="menu" class="menu" aria-label="Головне меню"></nav>
+  <main id="content"></main>
+
+   <!-- Модальне вікно -->
+  <div id="modal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="close" onclick="closeModal()">×</button>
+      <button class="prev" onclick="prevImage(event)">⟵</button>
+      <img id="modalImg">
+      <button class="next" onclick="nextImage(event)">⟶</button>
+    </div>
+  </div>
+<script src="script.js"></script>
+</body>
+</html>
