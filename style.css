@@ -1,6 +1,6 @@
 body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #0b81ea, #f5e108);
+      background: linear-gradient(to bottom, #f5f3f5, #c5c1c5);
       margin: 0;
       padding: 0;
     }
@@ -71,3 +71,4 @@ body {
       border-radius: 12px;
 
     }
+
