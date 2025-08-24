@@ -12,6 +12,7 @@ body {
     }
     nav {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
       background: #f8f8f8;
@@ -72,4 +73,5 @@ body {
       max-width: 90%;
       max-height: 90%;
       border-radius: 12px;
+
     }
