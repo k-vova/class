@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Однокласники</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1 class="rainbow-text">Однокласники. Випуск Ульянівської середньої школи №2 — 1987 рік</h1>
+  </header>
+
+  <nav id="menu" class="menu" aria-label="Головне меню"></nav>
+  <main id="content"></main>
+
+  <!-- Модалка перегляду фото -->
+  <div id="modal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <img id="modalImg" alt="" />
+      <div id="photoCounter" class="photo-counter"></div>
+      <div class="controls">
+        <button aria-label="Попереднє фото" onclick="prevImage(event)">⟵</button>
+        <button aria-label="Запустити або зупинити слайдшоу" onclick="toggleSlideshow()"><span id="slideshowStatus">▶️ Слайдшоу</span></button>
+        <select id="slideshowSpeed" onchange="changeSlideshowSpeed()">
+          <option value="3000" selected>3 c</option>
+          <option value="5000">5 c</option>
+          <option value="10000">10 c</option>
+        </select>
+        <button aria-label="Закрити" onclick="closeModal()">✖</button>
+        <button aria-label="Наступне фото" onclick="nextImage(event)">⟶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- НИЗ САЙТУ: лічильник унікальних відвідувачів -->
+  <footer>
+    <div class="counter" aria-live="polite" aria-atomic="true">
+      <span>Відвідувачі:</span>
+      <span id="uniqueCount" class="value">…</span>
+    </div>
+    <noscript>Щоб працював лічильник, увімкніть JavaScript.</noscript>
+  </footer>
+<script src="script.js"></script>
+</body>
+</html>
