@@ -1,0 +1,166 @@
+body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #f5f3f5, #c5c1c5);
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: rgb(62, 111, 235);
+      padding: 15px;
+      text-align: center;
+    }
+    /* Ефект переливання кольорів */
+    .rainbow-text {
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(
+        270deg,
+        #ffb3ba,
+        #ffdfba,
+        #ffffba,
+        #baffc9,
+        #bae1ff,
+        #d7baff,
+        #ffb3ba
+      );
+      background-size: 1200% 1200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      animation: rainbow 30s ease infinite;
+    }
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      background: #f8f8f8;
+      padding: 10px;
+    }
+    nav button {
+      padding: 8px 12px;
+      border: 3px solid #ccc;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    nav button.active {
+      background: #5b74b1;
+      color: white;
+      border-color: #5c79bd;
+    }
+    .page {
+      display: none;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 10px;
+    }
+    .page.active { display: block; }
+    .gallery {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.3s;
+      background: white;
+      padding: 10px 10px 25px 10px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      border: 1px solid #ddd;
+      transform: rotate(-1deg);
+    }
+    .gallery img:hover {
+      transform: rotate(0deg) scale(1.05);
+    }
+    /* Модальне вікно */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 90%;
+      max-height: 90%;
+    }
+    .modal img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    }
+    .controls {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    .controls button {
+      background: #5b74b1;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .controls button:hover {
+      background: #4a62a0;
+    }
+    .close { top: 10px; right: 10px; transform: none; }
+    .prev { left: -60px; }
+    .next { right: -60px; }
+    /* Відео */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    footer {
+      text-align: center;
+      margin: 20px;
+      font-size: 14px;
+      color: #333;
+    }
+    /* Адаптивність */
+    @media (max-width: 768px) {
+      .menu { flex-direction: column; }
+      .prev { left: 10px; }
+      .next { right: 10px; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.3rem; }
+      .gallery { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+    }
