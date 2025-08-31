@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <!-- Метадані документа -->
+  <meta charset="UTF-8" />
+  <title>Однокласники</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <!-- ============ ХЕДЕР І ЗАГОЛОВОК ============ -->
+  <header>
+    <!-- Райдужний заголовок із роком випуску -->
+    <h1 class="rainbow-text">Однокласники. Випуск Ульянівської середньої школи №2 — 1987 рік</h1>
+  </header>
+  
+  <!-- ============ ГОЛОВНЕ МЕНЮ (вкладки категорій) ============ -->
+  <!-- id потрібен JS; aria-label для доступності -->
+  <nav id="menu" class="menu" role="navigation" aria-label="Головне меню"></nav>
+
+  <!-- ============ ОСНОВНИЙ ВМІСТ (сюди рендеряться сторінки) ============ -->
+  <!-- main має id для JS і використовується як «контент»; aria-live polite — новий контент оголошується спокійно -->
+  <main id="content" aria-live="polite"></main>
+
+  <!-- ============ МОДАЛКА ДЛЯ ФОТО/ВІДЕО ============ -->
+  <!-- role="dialog" + aria-modal="true" + опис/заголовок для скрінрідерів; onclick по бекдропу — закриття -->
+  <div
+    id="modal"
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+    aria-describedby="modalDesc"
+    onclick="closeModal()"
+  >
+    <!-- Внутрішній контейнер модалки: зупиняємо «пробиття» кліків до бекдропу; tabindex="-1" — щоб фокусуватись через JS -->
+    <div class="modal-content" onclick="event.stopPropagation()" tabindex="-1">
+      <!-- Заголовок модалки для доступності (візуально ховаємо, але читається скрінрідером) -->
+      <h2 id="modalTitle" class="sr-only">Перегляд медіа</h2>
+      <p  id="modalDesc"  class="sr-only">Тут ви можете переглядати фото чи відео в збільшеному розмірі, керувати слайдшоу та навігацією.</p>
+
+      <!-- ЗОБРАЖЕННЯ в модалці (показується для фото-категорій) -->
+      <img id="modalImg" alt="" />
+
+      <!-- ВІДЕО в модалці (показується на сторінці «Відео») -->
+      <iframe
+        id="modalVideo"
+        title="Відео однокласників"
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        style="display:none"
+        loading="lazy"  <!-- Ліниве завантаження, щоб не гальмувати сторінку -->
+      ></iframe>
+
+      <!-- ПІДПИС під фото/відео у модалці -->
+      <div id="modalCaption" class="caption" aria-live="polite"></div>
+
+      <!-- Лічильник фото -->
+      <div id="photoCounter" class="photo-counter" aria-live="polite" aria-atomic="true"></div>
+
+      <!-- Панель керування (набір кнопок) -->
+      <div class="controls" aria-label="Керування переглядом">
+        <!-- Попереднє фото -->
+        <button type="button" aria-label="Попереднє фото" onclick="prevImage(event)">⟵</button>
+
+        <!-- Запуск/пауза слайдшоу -->
+        <button type="button" aria-label="Запустити або зупинити слайдшоу" onclick="toggleSlideshow()">
+          <span id="slideshowStatus">▶️ Слайдшоу</span>
+        </button>
+
+        <!-- Підпис до селекта — візуально схований, але доступний для скрінрідера -->
+        <label for="slideshowSpeed" class="sr-only">Швидкість слайдшоу</label>
+        <!-- Вибір швидкості слайдшоу -->
+        <select id="slideshowSpeed" onchange="changeSlideshowSpeed()" aria-label="Швидкість слайдшоу">
+          <option value="3000" selected>3 c</option>
+          <option value="5000">5 c</option>
+          <option value="10000">10 c</option>
+        </select>
+
+        <!-- Закрити модалку -->
+        <button type="button" id="closeBtn" aria-label="Закрити" onclick="closeModal()">✖</button>
+
+        <!-- Наступне фото -->
+        <button type="button" aria-label="Наступне фото" onclick="nextImage(event)">⟶</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ФУТЕР З ЛІЧИЛЬНИКОМ УНІКАЛЬНИХ ВІДВІДУВАЧІВ ============ -->
+  <footer>
+    <div class="counter" aria-live="polite" aria-atomic="true">
+      <span>Відвідувачі:</span>
+      <span id="uniqueCount" class="value">…</span> <!-- Початкове значення (заміниться JS) -->
+    </div>
+    <!-- Текст для користувачів без JS -->
+    <noscript>Щоб працював лічильник, увімкніть JavaScript.</noscript>
+  </footer>
+
+  <!-- ============ ОСНОВНИЙ JS ============ -->
+  <script src="script.js"></script>
+</body>
+</html>

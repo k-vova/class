@@ -1,0 +1,277 @@
+ /* ==============================
+       CSS ЗМІННІ ТЕМИ (кольори тощо)
+       ============================== */
+    :root {
+      --brand: #5b74b1;     /* Основний фірмовий колір кнопок/елементів */
+      --brand-2: #4a62a0;   /* Колір наведення/активності */
+      --bg1: #e0e0e0;       /* Початок фонового градієнта */
+      --bg2: #a0a0a0;       /* Кінець фонового градієнта */
+      --paper: #f8f8f8;     /* Колір «паперу» для секцій */
+      --text: #222;         /* Основний колір тексту */
+    }
+
+    /* Базова коробочна модель для коректних відступів усюди */
+    * { box-sizing: border-box; }
+
+    /* Базові стилі тіла сторінки */
+    body {
+      font-family: Arial, sans-serif;                         /* Читабельний шрифт без зарубок */
+      background: linear-gradient(to bottom, var(--bg1), var(--bg2)); /* Приємний градієнт фону */
+      margin: 0;                                              /* Прибираємо стандартні відступи браузера */
+      color: var(--text);                                     /* Колір тексту за замовчуванням */
+    }
+
+    /* Шапка сторінки */
+    header {
+      background: rgb(10, 74, 235); /* Насичений синій фон хедера */
+      padding: 30px;                /* Внутрішні відступи для «повітря» */
+      text-align: center;           /* Вирівнювання заголовка по центру */
+    }
+
+    /* Анімований різнокольоровий заголовок */
+    .rainbow-text {
+      font-size: 2rem;            /* Розмір шрифту заголовка */
+      font-weight: bold;          /* Жирність */
+      background: linear-gradient(
+        270deg,
+        #93f584, #46d63e, #1dc32b, #12982f, #04e82a, #84e43a, #60ea7e
+      );                          /* Градієнт для вигляду «райдужного» тексту */
+      background-size: 1200% 1200%; /* Збільшений розмір для плавної анімації */
+      -webkit-background-clip: text; /* Обрізка фону текстом (Safari/Chrome) */
+      -webkit-text-fill-color: transparent; /* Робимо текст прозорим, видно градієнт */
+      background-clip: text;      /* Стандартна обрізка для інших браузерів */
+      animation: rainbow 30s ease infinite; /* Безкінечна плавна анімація */
+      margin: 0;                  /* Прибираємо зовнішні відступи заголовка */
+    }
+
+    /* Ключові кадри анімації градієнта */
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Повага до системної опції "зменшити анімації" */
+    @media (prefers-reduced-motion: reduce) {
+      .rainbow-text { animation: none; } /* Вимикаємо анімацію для чутливих користувачів */
+    }
+
+    /* Головне меню з кнопками-вкладками */
+    nav.menu {
+      display: flex;             /* Рядок кнопок */
+      flex-wrap: wrap;           /* Перенесення на новий рядок на вузьких екранах */
+      justify-content: center;   /* Центрування пунктів меню */
+      gap: 10px;                 /* Проміжки між кнопками */
+      background: var(--paper);  /* Світлий фон під меню */
+      padding: 10px;             /* Внутрішній відступ */
+    }
+
+    /* Кнопки меню (вкладок) */
+    nav.menu button {
+      padding: 8px 12px;         /* Внутрішні відступи */
+      border: 3px solid #ccc;    /* Обрамлення для контрасту */
+      border-radius: 8px;        /* Округлення кутів */
+      background: white;         /* Білий фон кнопки */
+      cursor: pointer;           /* Курсор «рука» */
+      transition: 0.2s;          /* Плавні переходи (колір/фон) */
+    }
+
+    /* Стан активної кнопки (aria-pressed="true") для доступності */
+    nav.menu button[aria-pressed="true"] {
+      background: var(--brand);  /* Виділяємо активну вкладку */
+      color: white;              /* Білий текст на активній вкладці */
+      border-color: #5c79bd;     /* Темніша рамка для акценту */
+    }
+
+    /* ДОДАТКОВО: чітке кільце фокусу для клавіатурної навігації */
+    button:focus-visible, select:focus-visible, a:focus-visible {
+      outline: 3px solid var(--brand);   /* Видиме кільце фокусу */
+      outline-offset: 2px;               /* Відступ кільця від елемента */
+    }
+
+    /* Допоміжний клас «візуально сховано, але доступно для скринрідерів» */
+    .sr-only {
+      position: absolute !important;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0);
+      white-space: nowrap; border: 0;
+    }
+
+    /* Контейнер сторінки (контент під конкретну вкладку) */
+    .page {
+      display: none;            /* Ховаємо всі сторінки за замовчуванням */
+      max-width: 1000px;        /* Обмежуємо ширину для зручності читання */
+      margin: 20px auto;        /* Центруємо контейнер і додаємо вертикальний відступ */
+      padding: 10px;            /* Внутрішні відступи */
+    }
+
+    .page.active { display: block; } /* Показуємо активну сторінку */
+
+    /* Сітка галереї з адаптивними колонками */
+    .gallery {
+      margin-top: 20px;                                      /* Відступ зверху */
+      display: grid;                                         /* CSS Grid для рівної сітки */
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Гнучкі колонки */
+      gap: 20px;                                             /* Проміжки між картками */
+    }
+
+    /* Міні-картки зображень у галереї */
+    .gallery img {
+      width: 100%;                 /* Зображення займає всю ширину картки */
+      border-radius: 10px;         /* Округлення кутів зображення */
+      object-fit: cover;           /* Акуратне обрізання під контейнер */
+      cursor: pointer;             /* Курсор «рука» для натискання */
+      transition: transform 0.2s;  /* Плавне збільшення при ховері */
+      background: white;           /* Білий фон-підкладка */
+      padding: 10px;               /* «Біле поле» навколо фото */
+      box-shadow: 0 8px 15px rgba(0,0,0,0.3); /* Тінь під карткою */
+      transform: rotate(-2deg);    /* Легка «ретро»-поворотність */
+    }
+
+    /* Кожне парне зображення повертаємо у протилежний бік для різноманіття */
+    .gallery img:nth-child(even) { transform: rotate(2deg); }
+
+    /* Ефект при наведенні курсора */
+    .gallery img:hover { transform: scale(1.05); }
+
+    /* На дуже вузьких екранах прибираємо повороти для охайності */
+    @media (max-width: 480px) {
+      .gallery img { transform: none !important; }
+    }
+
+    /* Підпис під фото в модальному перегляді */
+    .caption {
+      margin-top: 8px;            /* Відступ надпису від зображення */
+      color: #fff;                /* Білий текст на темному фоні модалки */
+      font-size: 16px;            /* Розмір шрифту підпису */
+      text-align: center;         /* Центруємо текст */
+    }
+
+    /* Модальне вікно (оверлей на всю сторінку) */
+    .modal {
+      display: none;                        /* Ховаємо модалку за замовчуванням */
+      position: fixed;                      /* Фіксуємо поверх усієї сторінки */
+      z-index: 1000;                        /* Високий індекс, щоб бути над усім */
+      inset: 0;                             /* Розтягуємо на весь екран */
+      background: rgba(10,10,10,0.95);      /* Напівпрозорий темний фон */
+      justify-content: center;              /* Центруємо вміст горизонтально */
+      align-items: center;                  /* Центруємо вміст вертикально */
+      flex-direction: column;               /* Вертикальне розміщення елементів */
+      padding: 10px;                        /* Внутрішній відступ */
+    }
+
+    /* Контейнер вмісту модалки */
+    .modal-content {
+      position: relative;                   /* Для позиціювання внутрішніх елементів */
+      display: flex;                        /* Колонка елементів */
+      flex-direction: column;
+      align-items: center;                  /* Центрування по горизонталі */
+      max-width: 90%;                       /* Обмеження ширини */
+      max-height: 90%;                      /* Обмеження висоти */
+      outline: none;                        /* Знімаємо браузерний outline, керуємо самі */
+    }
+
+    /* Зображення в модалці */
+    .modal img {
+      max-width: 100%;                      /* Адаптивна ширина */
+      max-height: 75vh;                     /* Обмеження по висоті вікна */
+      border-radius: 12px;                  /* Округлені кути */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7); /* Глибша тінь */
+    }
+
+    /* Відео (iframe) у модалці */
+    .modal iframe {
+      width: min(100%, 1000px);             /* Адаптивна ширина з верхнім лімітом */
+      height: min(75vh, 562px);             /* Адаптивна висота (близько 16:9) */
+      border: none;                          /* Без рамки */
+      border-radius: 12px;                   /* Округлення кутів */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);/* Тінь */
+      background: #000;                      /* Чорний фон на випадок повільного завантаження */
+    }
+
+    /* Лічильник "Фото X з Y" під зображенням */
+    .photo-counter {
+      margin-top: 8px;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    /* Панель керування в модалці (кнопки навігації/слайдшоу) */
+    .controls {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    /* Кнопки керування модалкою та селект швидкості слайдшоу */
+    .controls button,
+    .controls select {
+      background: var(--brand);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    /* Ховер-ефект для кнопок/селекта */
+    .controls button:hover,
+    .controls select:hover { background: var(--brand-2); }
+
+    /* Контейнер відео на сторінці (поза модалкою) з адаптивним співвідношенням 16:9 */
+    .video-container {
+      position: relative;       /* Для позиціювання iframe всередині */
+      padding-bottom: 56.25%;   /* 16:9 = 9/16 = 0.5625 */
+      height: 0;                /* Трюк для адаптивності: висоту задає відсотковий паддінг */
+      overflow: hidden;         /* Ховаємо все, що виходить за межі */
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      background: #000;         /* Чорний фон до завантаження */
+    }
+
+    /* Адаптивне розміщення iframe всередині контейнера */
+    .video-container iframe {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    }
+
+    /* Футер з лічильником відвідувачів */
+    footer {
+      margin-top: 32px;
+      background: var(--paper);
+      border-top: 1px solid #ddd;
+      padding: 12px 16px;
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+    }
+
+    /* Стилі лічильника (вирівнювання цифр) */
+    .counter {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      font-variant-numeric: tabular-nums; /* Фіксована ширина цифр для стабільності */
+    }
+
+    /* Значення лічильника — трохи жирніше та з мінімальною шириною */
+    .counter .value {
+      font-weight: 700;
+      min-width: 2ch;           /* Не «стрибає», коли змінюється кількість цифр */
+      display: inline-block;
+    }
+
+    /* Адаптивні дрібні правки для планшетів/мобільних */
+    @media (max-width: 768px) {
+      .menu { flex-direction: column; } /* Меню стає колонкою */
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 1.3rem; } /* Менший заголовок на дуже вузьких екранах */
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Дрібніші картки */
+      }
+    }
