@@ -32,7 +32,7 @@
       {
         id: 'meet2022-25',
         name: 'Зустріч 2022-2025р',
-        photos: Array.from({ length: 9 }, (_, i) => `img/Зустріч 2022-2025р/${i + 1}.jpg`)
+        photos: Array.from({ length: 12 }, (_, i) => `img/Зустріч 2022-2025р/${i + 1}.jpg`)
       },
       {
         id: 'video',
@@ -349,4 +349,5 @@
     document.addEventListener('DOMContentLoaded', () => {
       renderPage(PAGES[0].id);  
       updateUniqueCounter();    
+
     });
