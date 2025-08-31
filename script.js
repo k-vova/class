@@ -7,7 +7,7 @@
       {
         id: 'school-days',
         name: 'Шкільні будні',
-        photos: Array.from({ length: 41 }, (_, i) => `img/Шкільні будні/${i + 1}.jpg`)
+        photos: Array.from({ length: 42 }, (_, i) => `img/Шкільні будні/${i + 1}.jpg`)
       },
       {
         id: 'group-photos',
@@ -351,3 +351,4 @@
       updateUniqueCounter();    
 
     });
+
