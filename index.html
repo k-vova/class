@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Однокласники</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Analytics (замініть G-XXXXXXXXXX на ваш ідентифікатор) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FYZ97342F5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FYZ97342F5');
+  </script>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1 class="rainbow-text">
+      <svg class="flag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" aria-hidden="true" focusable="false">
+        <defs>
+          <filter id="wave" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="2" seed="3" result="noise">
+              <animate attributeName="baseFrequency" dur="8s" values="0.012 0.02; 0.02 0.03; 0.012 0.02" repeatCount="indefinite"/>
+              <animate attributeName="seed" dur="10s" values="3; 6; 3" repeatCount="indefinite"/>
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G">
+              <animate attributeName="scale" dur="8s" values="0,8;0,14;0,8" repeatCount="indefinite"/>
+            </feDisplacementMap>
+          </filter>
+          <linearGradient id="light" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.55)">
+              <animate attributeName="offset" values="0;1;0" dur="7s" repeatCount="indefinite"/>
+            </stop>
+            <stop offset="20%" stop-color="rgba(255,255,255,0)">
+              <animate attributeName="offset" values="0.2;1.2;0.2" dur="7s" repeatCount="indefinite"/>
+            </stop>
+          </linearGradient>
+          <linearGradient id="shade" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="rgba(0,0,0,0.15)"/>
+            <stop offset="100%" stop-color="rgba(0,0,0,0.05)"/>
+          </linearGradient>
+          <mask id="rounded">
+            <rect x="0" y="0" width="300" height="200" rx="12" ry="12" fill="#fff"/>
+          </mask>
+        </defs>
+        <g filter="url(#wave)" mask="url(#rounded)">
+          <rect width="300" height="100" fill="#0057b7"/>
+          <rect y="100" width="300" height="100" fill="#ffdd00"/>
+          <rect width="300" height="200" fill="url(#light)" opacity="0.35"/>
+          <rect width="300" height="200" fill="url(#shade)" opacity="0.25"/>
+        </g>
+      </svg>
+      "Наші шкільні роки (1977–1987), Ульянівської середньої школи № 2"
+    </h1>
+  </header>
+  <nav id="menu" class="menu" role="navigation" aria-label="Головне меню"></nav>
+  <main id="content" aria-live="polite"></main>
+  <div
+    id="modal"
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+    aria-describedby="modalDesc"
+    onclick="closeModal()"
+  >
+    <div class="modal-content" onclick="event.stopPropagation()" tabindex="-1">
+      <h2 id="modalTitle" class="sr-only">Перегляд медіа</h2>
+      <p  id="modalDesc"  class="sr-only">Тут ви можете переглядати фото чи відео в збільшеному розмірі, керувати слайдшоу та навігацією.</p>
+      <img id="modalImg" alt="" />
+      <iframe
+        id="modalVideo"
+        title="Відео однокласників"
+        allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        style="display:none"
+        loading="lazy"
+      ></iframe>
+      <div id="modalCaption" class="caption" aria-live="polite"></div>
+      <div id="photoCounter" class="photo-counter" aria-live="polite" aria-atomic="true"></div>
+      <div class="controls" aria-label="Керування переглядом">
+        <button type="button" aria-label="Попереднє фото" onclick="prevImage(event)">⟵</button>
+        <button type="button" aria-label="Запустити або зупинити слайдшоу" onclick="toggleSlideshow()">
+          <span id="slideshowStatus">▶️ Слайдшоу</span>
+        </button>
+        <label for="slideshowSpeed" class="sr-only">Швидкість слайдшоу</label>
+        <select id="slideshowSpeed" onchange="changeSlideshowSpeed()" aria-label="Швидкість слайдшоу">
+          <option value="3000" selected>3 c</option>
+          <option value="5000">5 c</option>
+          <option value="10000">10 c</option>
+        </select>
+        <button type="button" id="closeBtn" aria-label="Закрити" onclick="closeModal()">✖</button>
+        <button type="button" aria-label="Наступне фото" onclick="nextImage(event)">⟶</button>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>© Наш випуск 1977–1987. Всі права захищено.</p>
+  </footer>
+<script src="script.js"></script>
+</body>
+</html>
