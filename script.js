@@ -77,7 +77,7 @@ const menu = document.getElementById("menu"),
 let currentPageId = null,
   currentIndex = 0,
   slideshowInterval = null,
-  slideshowSpeed = 3000,
+  slideshowSpeed = 5000,
   lastFocusedElement = null,
   isVideoMode = false,
   musicPlaying = false;
@@ -429,3 +429,4 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("DOMContentLoaded", initYearsCounter);
 })();
 /* ---------------- /лічильник років ---------------- */
+
