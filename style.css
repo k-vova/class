@@ -29,7 +29,7 @@
       width: 80px;
       height: 52px;
       margin-right: 10px;
-      vertical-align: -6px;
+      vertical-align: -20px;
       border-radius: 3px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     }
@@ -344,4 +344,5 @@
         font-size: 1.25rem;
         min-width: 36px;
       }
+
     }
