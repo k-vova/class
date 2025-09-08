@@ -430,73 +430,35 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 /* ---------------- /лічильник років ---------------- */
 
-const VISITED_KEY = "class_visited_v2"; // мітка в localStorage
 const COUNTER_KEY = "k-vova-class_visitors1987"; // унікальний ключ лічильника
 const API = "https://countapi.mileshilliard.com/api/v1"; // сервіс підрахунку
 
-function safeGetLocal(key) {
-  try {
-    return localStorage.getItem(key); // читаємо значення
-  } catch {
-    return null;
-  }
-}
-
-function safeSetLocal(key, val) {
-  try {
-    localStorage.setItem(key, val); // зберігаємо значення
-  } catch {}
-}
-
-async function updateUniqueCounter() {
+async function updateVisitCounter() {
   const out = document.getElementById("uniqueCount"); // місце для цифри
-  const visited = safeGetLocal(VISITED_KEY) === "1"; // чи вже був цей користувач
   let shown = false;
 
   try {
-    // 1. Отримати поточний лічильник
-    const resGet = await fetch(
-      `${API}/get/${encodeURIComponent(COUNTER_KEY)}`,
-      {
-        cache: "no-store",
-        mode: "cors",
-      }
-    );
-    if (resGet.ok) {
-      const dataGet = await resGet.json();
-      const n = Number(dataGet?.value);
+    // Кожен раз при заході збільшуємо лічильник (HIT)
+    const resHit = await fetch(`${API}/hit/${encodeURIComponent(COUNTER_KEY)}`, {
+      cache: "no-store",
+      mode: "cors"
+    });
+    if (resHit.ok) {
+      const dataHit = await resHit.json();
+      const n = Number(dataHit?.value);
       if (Number.isFinite(n)) {
-        out.textContent = n; // показати число
+        out.textContent = n; // показати нове число
         shown = true;
       }
     }
+  } catch (_) { }
 
-    // 2. Якщо новий користувач → збільшити лічильник
-    if (!visited) {
-      const resHit = await fetch(
-        `${API}/hit/${encodeURIComponent(COUNTER_KEY)}`,
-        {
-          cache: "no-store",
-          mode: "cors",
-        }
-      );
-      if (resHit.ok) {
-        const dataHit = await resHit.json();
-        const n2 = Number(dataHit?.value);
-        if (Number.isFinite(n2)) {
-          out.textContent = n2; // показати нове число
-          shown = true;
-        }
-        safeSetLocal(VISITED_KEY, "1"); // позначити, що цей користувач врахований
-      }
-    }
-  } catch (_) {}
-
-  // 3. Якщо нічого не вдалось отримати
+  // Якщо нічого не вдалось отримати → показати дефіс
   if (!shown) out.textContent = "—";
 }
 
 // запуск після завантаження сторінки
 document.addEventListener("DOMContentLoaded", () => {
-  updateUniqueCounter();
+  updateVisitCounter();
 });
+
