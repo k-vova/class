@@ -88,10 +88,7 @@ let currentPageId = null,
 // Нормалізація фото
 function normalizePhoto(item, fallbackCaption) {
     return typeof item === "string"
-        ? {
-            src: item,
-            caption: fallbackCaption,
-        }
+        ? { src: item, caption: fallbackCaption }
         : { src: item.src, caption: item.caption || fallbackCaption };
 }
 
@@ -131,7 +128,8 @@ function showPage(pageId) {
             img.alt = caption;
             img.loading = "lazy";
             img.decoding = "async";
-            img.onclick = () => openModal(src, caption, index, page.photos);
+            img.onclick = () =>
+                openModal(src, caption, index, page.photos);
             img.tabIndex = 0;
             img.addEventListener("keydown", (e) => {
                 if (e.key === "Enter" || e.key === " ") {
@@ -246,28 +244,28 @@ function fadeImage(index) {
     }, 300);
 }
 
-// Автоперехід між альбомами
+// Автоперехід між альбомами (без відео)
 function advanceToNextAlbum() {
-    // ТЕПЕР: переходимо ДО НАСТУПНОЇ СТОРІНКИ ЗА СПИСКОМ (включно з відео), а не знову до першої
     let currentAlbumIndex = PAGES.findIndex((p) => p.id === currentPageId);
-    currentAlbumIndex = (currentAlbumIndex + 1) % PAGES.length;
-    const nextPage = PAGES[currentAlbumIndex];
 
+    // шукаємо наступний альбом з фото (пропускаємо відео)
+    let nextIndex = (currentAlbumIndex + 1) % PAGES.length;
+    while (PAGES[nextIndex].videoUrl) {
+        nextIndex = (nextIndex + 1) % PAGES.length;
+    }
+
+    const nextPage = PAGES[nextIndex];
     showPage(nextPage.id);
     currentIndex = 0;
 
     if (nextPage.photos && nextPage.photos.length) {
-        // Якщо наступна сторінка — фотоальбом, показуємо перше фото
-        fadeImage(currentIndex);
+        openModal(
+            normalizePhoto(nextPage.photos[currentIndex], `Фото 1`).src,
+            normalizePhoto(nextPage.photos[currentIndex], `Фото 1`).caption,
+            currentIndex,
+            nextPage.photos
+        );
         isVideoMode = false;
-    } else if (nextPage.videoUrl) {
-        // Якщо наступна сторінка — відео, перемикаємо модалку у відеорежим
-        modalImg.style.display = "none";
-        modalVideo.style.display = "block";
-        modalVideo.src = nextPage.videoUrl;
-        modalCaption.textContent = "";
-        photoCounter.textContent = "";
-        isVideoMode = true;
     }
 }
 
@@ -355,18 +353,10 @@ document.addEventListener("DOMContentLoaded", () => {
     showPage(PAGES[0].id);
 });
 
-/* ---------------- ДОДАНИЙ СКРИПТ ДЛЯ ЛІЧИЛЬНИКА РОКІВ ----------------
- Лічильник показує, скільки повних років пройшло від дати випуску.
- Вважатимемо рік випуску: 1987. Для точності — якщо потрібна
- конкретна дата випуску (день/місяць), її можна змінити в змінній
- graduationDate.
--------------------------------------------------------------------- */
+/* ---------------- ЛІЧИЛЬНИК РОКІВ ---------------- */
 (function () {
-    const graduationYear = 1987; // рік випуску
-    // Якщо хочете конкретну дату випуску (день, місяць) — змініть тут:
-    // формат: new Date(рік, місяцьIndex(0-11), день)
-    // наприклад, 30 червня 1987 => new Date(1987, 5, 30)
-    const graduationDate = new Date(graduationYear, 5, 30); // 30 червня 1987 (можна змінити)
+    const graduationYear = 1987;
+    const graduationDate = new Date(graduationYear, 5, 30); // 30 червня 1987
 
     const yearsNumberEl = document.getElementById("yearsNumber");
     const yearsCounterEl = document.getElementById("yearsCounter");
@@ -375,7 +365,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function computeFullYearsSince(date) {
         const now = new Date();
         let years = now.getFullYear() - date.getFullYear();
-        // якщо ще не пройшов день/місяць у цьому році — віднімемо 1
         const anniversaryThisYear = new Date(
             now.getFullYear(),
             date.getMonth(),
@@ -385,18 +374,15 @@ document.addEventListener("DOMContentLoaded", () => {
         return years >= 0 ? years : 0;
     }
 
-    // Анімація від 0 до target за duration мс
     function animateNumber(target, duration = 1400) {
         const start = 0;
         const startTime = performance.now();
         function step(now) {
             const elapsed = now - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            // easing (easeOutCubic)
             const eased = 1 - Math.pow(1 - progress, 3);
             const current = Math.floor(start + (target - start) * eased);
             yearsNumberEl.textContent = current;
-            // при великих змінах даємо коротку пульсацію
             if (progress < 1 && progress > 0.6) {
                 yearsNumberEl.classList.add("animate");
             } else {
@@ -405,10 +391,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (progress < 1) {
                 requestAnimationFrame(step);
             } else {
-                // фінальна пульсація
                 yearsNumberEl.classList.add("animate");
                 setTimeout(() => yearsNumberEl.classList.remove("animate"), 350);
-                // оновлюємо aria-label для скрінрідерів
                 yearsCounterEl.setAttribute(
                     "aria-label",
                     `Від випуску пройшло ${target} років`
@@ -418,25 +402,21 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(step);
     }
 
-    // Ініціалізація лічильника під час завантаження сторінки
     function initYearsCounter() {
         const years = computeFullYearsSince(graduationDate);
-        // коректний суфікс для української мови
         const suffix = getUkrainianYearSuffix(years);
         yearsSuffixEl.textContent = suffix;
         animateNumber(years, 1400);
-        // одноразове коротке оновлення щосекунди — якщо перехід через опівдні
         setInterval(() => {
             const newYears = computeFullYearsSince(graduationDate);
             if (parseInt(yearsNumberEl.textContent, 10) !== newYears) {
                 yearsSuffixEl.textContent = getUkrainianYearSuffix(newYears);
                 animateNumber(newYears, 900);
             }
-        }, 60 * 1000); // перевірка щохвилини
+        }, 60 * 1000);
     }
 
     function getUkrainianYearSuffix(n) {
-        // Повертає правильний суфікс: "рік", "роки", "років"
         n = Math.abs(n) % 100;
         const n1 = n % 10;
         if (n > 10 && n < 20) return "років";
@@ -445,42 +425,37 @@ document.addEventListener("DOMContentLoaded", () => {
         return "років";
     }
 
-    // Запускаємо після DOMContentLoaded (вже є слушач, додаємо свій)
     document.addEventListener("DOMContentLoaded", initYearsCounter);
 })();
-/* ---------------- /лічильник років ---------------- */
+/* ---------------- /ЛІЧИЛЬНИК РОКІВ ---------------- */
 
-const COUNTER_KEY = "k-vova-class_visitors1987"; // унікальний ключ лічильника
-const API = "https://countapi.mileshilliard.com/api/v1"; // сервіс підрахунку
+// Лічильник унікальних відвідувачів
+const COUNTER_KEY = "k-vova-class_visitors1987";
+const API = "https://countapi.mileshilliard.com/api/v1";
 
 async function updateVisitCounter() {
-    const out = document.getElementById("uniqueCount"); // місце для цифри
+    const out = document.getElementById("uniqueCount");
     let shown = false;
 
     try {
-        // Кожен раз при заході збільшуємо лічильник (HIT)
         const resHit = await fetch(
             `${API}/hit/${encodeURIComponent(COUNTER_KEY)}`,
-            {
-                cache: "no-store",
-                mode: "cors",
-            }
+            { cache: "no-store", mode: "cors" }
         );
         if (resHit.ok) {
             const dataHit = await resHit.json();
             const n = Number(dataHit?.value);
             if (Number.isFinite(n)) {
-                out.textContent = n; // показати нове число
+                out.textContent = n;
                 shown = true;
             }
         }
     } catch (_) { }
 
-    // Якщо нічого не вдалось отримати → показати дефіс
     if (!shown) out.textContent = "—";
 }
 
-// запуск після завантаження сторінки
 document.addEventListener("DOMContentLoaded", () => {
     updateVisitCounter();
+});
 });
