@@ -72,6 +72,10 @@ header {
         animation: none;
     }
 }
+.menu button,
+.menu a {
+    font-weight: bold;
+}
 
 nav.menu {
     display: flex;
@@ -364,4 +368,5 @@ footer {
     /* резервує місце для 3 символів */
     display: inline-block;
     /* дозволяє працювати з min-width */
+
 }
