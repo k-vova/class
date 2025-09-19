@@ -26,7 +26,7 @@ const PAGES = [
   {
     id: "excursions",
     name: "Екскурсії",
-    photos: Array.from({ length: 22 }, (_, i) => `img/Екскурсії/${i + 1}.jpg`),
+    photos: Array.from({ length: 27 }, (_, i) => `img/Екскурсії/${i + 1}.jpg`),
   },
   {
     id: "meet97-07",
@@ -853,3 +853,4 @@ document.addEventListener("visibilitychange", async () => {
 window.addEventListener("pagehide", async () => {
   await releaseWakeLock();
 });
+
