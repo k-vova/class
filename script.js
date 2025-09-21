@@ -78,11 +78,11 @@ const PAGES = [
 ];
 
 const MUSIC_PLAYLIST = [
-  { name: "Мелодія 1", path: "audio/song1.mp3" },
-  { name: "Мелодія 2", path: "audio/song2.mp3" },
-  { name: "Мелодія 3", path: "audio/song3.mp3" },
-  { name: "Мелодія 4", path: "audio/song4.mp3" },
-  { name: "Мелодія 5", path: "audio/song5.mp3" },
+  { name: "Пісня 1", path: "audio/song1.mp3" },
+  { name: "Пісня 2", path: "audio/song2.mp3" },
+  { name: "Пісня 3", path: "audio/song3.mp3" },
+  { name: "Пісня 4", path: "audio/song4.mp3" },
+  { name: "Пісня 5", path: "audio/song5.mp3" },
 ];
 
 const menu = document.getElementById("menu"),
@@ -854,4 +854,5 @@ document.addEventListener("DOMContentLoaded", () => {
   if (musicSelector) {
     musicSelector.addEventListener('change', changeTrack);
   }
+
 });
