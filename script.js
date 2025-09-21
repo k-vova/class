@@ -30,10 +30,10 @@ const PAGES = [
   },
   {
     id: "meet",
-    name: "Зустрічі після школи",
+    name: "Зустрічі",
     photos: Array.from(
       { length: 6 },
-      (_, i) => `img/Зустрічі після школи/${i + 1}.webp`
+      (_, i) => `img/Зустрічі/${i + 1}.webp`
     ),
   },
   {
@@ -861,3 +861,4 @@ document.addEventListener("visibilitychange", async () => {
 window.addEventListener("pagehide", async () => {
   await releaseWakeLock();
 });
+
