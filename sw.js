@@ -1,19 +1,18 @@
 // sw.js
 
-const CACHE_NAME = 'classmates-album-v1';
-// Список файлів, які потрібно закешувати при встановленні
+const CACHE_NAME = 'classmates-album-v2'; // Оновив версію кешу
+// Список файлів, які потрібно закешувати
 const FILES_TO_CACHE = [
   '/',
   '/index.html',
-  '/audio/mysong.mp3', // Додайте сюди ваші ключові файли
+  '/style.css', // <-- ДОДАНО ВАШ ФАЙЛ СТИЛІВ
+  '/audio/mysong.mp3',
   '/video/keep-awake.mp4',
   '/icons/icon-192x192.png',
   '/icons/icon-512x512.png'
-  // ВАЖЛИВО: Не додавайте сюди всі ваші фото! 
-  // Їх ми будемо кешувати динамічно.
 ];
 
-// Подія 'install' - відбувається при першому завантаженні
+// Подія 'install' - кешування оболонки додатку
 self.addEventListener('install', (event) => {
   console.log('[Service Worker] Встановлення...');
   event.waitUntil(
@@ -30,38 +29,36 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((keyList) => {
       return Promise.all(keyList.map((key) => {
         if (key !== CACHE_NAME) {
+          console.log('[Service Worker] Видалення старого кешу', key);
           return caches.delete(key);
         }
       }));
     })
   );
+  return self.clients.claim();
 });
 
-// Подія 'fetch' - перехоплення запитів до мережі
-// Стратегія "Cache-First" (Спочатку кеш)
+// Подія 'fetch' - перехоплення запитів (стратегія "Cache-First")
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
-      // Якщо запит є в кеші - повертаємо його
+      // Якщо є в кеші - повертаємо з кешу
       if (response) {
         return response;
       }
-      // Інакше - робимо запит до мережі, отримуємо відповідь
-      // і додаємо її в кеш для майбутніх запитів
+      // Інакше - йдемо в мережу
       return fetch(event.request).then((response) => {
-        // Перевіряємо, чи ми отримали коректну відповідь
+        // Якщо відповідь некоректна, просто повертаємо її
         if (!response || response.status !== 200 || response.type !== 'basic') {
           return response;
         }
-
-        // Клонуємо відповідь, бо її можна прочитати лише один раз
+        
+        // Клонуємо відповідь і кешуємо її
         const responseToCache = response.clone();
-
         caches.open(CACHE_NAME).then((cache) => {
-            // Кешуємо нові запити (наприклад, фотографії)
             cache.put(event.request, responseToCache);
         });
-
+        
         return response;
       });
     })
