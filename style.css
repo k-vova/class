@@ -211,7 +211,7 @@ a:focus-visible {
 
 .modal img {
   max-width: 100%;
-  max-height: 60vh;
+  max-height: 55vh;
   /* щоб кнопки завжди вміщались */
   object-fit: contain;
   border-radius: 12px;
@@ -405,4 +405,5 @@ footer {
   top: -9999px;
   opacity: 0;
   pointer-events: none;
+
 }
