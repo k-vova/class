@@ -19,7 +19,7 @@ const PAGES = [
     id: "group-photos",
     name: "Колективні фото",
     photos: Array.from(
-      { length: 11 },
+      { length: 12 },
       (_, i) => `img/Колективні фото/${i + 1}.webp`
     ),
   },
@@ -849,5 +849,6 @@ document.addEventListener("DOMContentLoaded", () => {
     musicSelector.addEventListener("change", changeTrack);
   }
 });
+
 
 
