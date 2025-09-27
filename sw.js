@@ -4,7 +4,7 @@ const FILES_TO_CACHE = [
   '/class/index.html',
   '/class/style.css',
   '/class/script.js', 
-  '/class/audio/mysong.mp3',
+  '/class/audio/song.mp3',
   '/class/video/keep-awake.mp4',
   '/class/icons/icon-192x192.png',
   '/class/icons/icon-512x512.png',
@@ -57,4 +57,5 @@ self.addEventListener('fetch', (event) => {
       });
     })
   );
+
 });
