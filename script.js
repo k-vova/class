@@ -86,10 +86,7 @@ const PAGES = [
         url: "https://www.youtube.com/embed/shRL41ZJUU4",
         name: "Благовіщенське 2019 рік",
       },
-      {
-        url: "https://www.youtube.com/embed/R2rqtN4cBSs",
-        name: "Районні змагання легкоатлетів 1982 рік",
-      }
+
       // Можете додати більше відео тут, скопіювавши блок вище
     ],
   },
@@ -939,4 +936,5 @@ document.addEventListener("DOMContentLoaded", () => {
   backButton.addEventListener("click", () => {
     showAlbumMenu();
   });
+
 });
