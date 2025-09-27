@@ -329,7 +329,7 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      max-width: 90%;
+      max-width: 95%;
       max-height: 90vh;
       outline: none;
       opacity: 0;
@@ -569,6 +569,7 @@
  }
 
     }
+
 
 
 
