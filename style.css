@@ -361,7 +361,7 @@
       position: relative;
       width: 60vw;
       max-width: 1200px;
-      padding-top: 56.25%;
+      padding-top: 75%;
       /* 16:9 Aspect Ratio */
       height: 0;
       background: #000;
@@ -561,4 +561,5 @@
       .dynamic-card p {
         font-size: 1.5rem;
       }
+
     }
