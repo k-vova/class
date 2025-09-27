@@ -561,4 +561,11 @@
       .dynamic-card p {
         font-size: 1.5rem;
       }
+        /* === СТИЛІ СПЕЦІАЛЬНО ДЛЯ МОБІЛЬНИХ === */
+    @media (max-width: 768px) {
+   .modal-video-wrapper {
+    width: 95vw; /* <-- Встановлюємо більшу ширину для мобільних */
+    }
+ }
+
     }
