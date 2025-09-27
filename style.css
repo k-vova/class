@@ -361,7 +361,7 @@
       position: relative;
       width: 60vw;
       max-width: 1200px;
-      padding-top: 75%;
+      padding-top: 95%;
       /* 16:9 Aspect Ratio */
       height: 0;
       background: #000;
@@ -563,3 +563,4 @@
       }
 
     }
+
