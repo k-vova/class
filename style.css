@@ -429,7 +429,7 @@
       display: block;
       transform-origin: center center;
       will-change: transform;
-      transition: opacity 0.3s ease-in-out;
+      transition: opacity 0.6s ease-in-out;
       /* Плавна зміна фото */
     }
 
@@ -627,4 +627,5 @@
       .dynamic-card p {
         font-size: 1.5rem;
       }
+
     }
