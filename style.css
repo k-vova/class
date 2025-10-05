@@ -188,7 +188,7 @@
       visibility: hidden;
       transform: translateX(-50%) translateY(-10px);
       transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-      max-height: calc(100vh - 3000px);
+      max-height: calc(100vh - 300px);
       overflow-y: auto;
       backdrop-filter: blur(10px);
     }
@@ -731,4 +731,5 @@
       background-color: #ff33ff;
 
     }
+
 
