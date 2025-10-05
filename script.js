@@ -870,7 +870,7 @@
         }
       }, 60 * 1000);
     }
-    const COUNTER_KEY = "k-vova-class_visitors1987",
+    const COUNTER_KEY = "k-vova-class_visitors1987-v3",
       API = "https://countapi.mileshilliard.com/api/v1";
     async function updateVisitCounter() {
       const out = document.getElementById("uniqueCount");
@@ -1026,4 +1026,5 @@
       });
       prevBtn.addEventListener("click", prevMedia);
       nextBtn.addEventListener("click", nextMedia);
+
     });
