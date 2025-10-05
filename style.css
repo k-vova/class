@@ -127,7 +127,7 @@
 
     .dynamic-card h2 {
       font-size: 3.5rem;
-      font-weight: 700;
+      font-weight: 500;
       margin: 0 0 15px;
       color: var(--light-text);
       text-shadow: var(--glow-cyan);
@@ -135,7 +135,7 @@
 
     .dynamic-card p {
       font-size: 1.3rem;
-      margin-bottom: 30px;
+      margin-bottom: 12px;
       font-weight: 400;
       color: var(--light-text);
       text-shadow: 0 0 5px var(--neon-pink);
@@ -729,4 +729,5 @@
 
     nav.menu::-webkit-scrollbar-thumb:hover {
       background-color: #ff33ff;
+
     }
