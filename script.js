@@ -63,7 +63,7 @@ const PAGES = [{
     name: "Радіо FM",
     isRadio: true,
     // --- Ось нове посилання ---
-    streamUrl: "https://stream.radio.promodj.com/radio-relax-128"
+    streamUrl: "https://online.hitfm.ua/HitFM"
 },
 ];
 const MUSIC_PLAYLIST = [{
@@ -958,4 +958,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     prevBtn.addEventListener("click", prevMedia);
     nextBtn.addEventListener("click", nextMedia);
+
 });
