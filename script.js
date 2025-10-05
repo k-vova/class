@@ -81,8 +81,8 @@
         url: "https://stream4.nadaje.com:9889/lux?nocache=2933"
       },
       {
-        name: "Хіт FM",
-        url: "https://online.hitfm.ua/HitFM"
+        name: "Перше християнське",
+        url: "http://stream.hope.ua:7777/golos/256"
       },
       {
         name: "Авторадіо Україна",
@@ -1028,3 +1028,4 @@
       nextBtn.addEventListener("click", nextMedia);
 
     });
+
