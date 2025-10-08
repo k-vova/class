@@ -1,0 +1,22 @@
+{
+  "name": "Однокласники: Випуск 1987",
+  "short_name": "Випуск '87",
+  "description": "Фотоальбом випускників Ульянівської СШ №2",
+  "start_url": "/class/index1.html",
+  "display": "standalone",
+  "background_color": "#e0e0e0",
+  "theme_color": "#5b74b1",
+  "icons": [
+    {
+      "src": "/class/icons/icon-192x192.png",  
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/class/icons/icon-512x512.png",  
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
