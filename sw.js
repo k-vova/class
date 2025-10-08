@@ -2,8 +2,8 @@ const CACHE_NAME = 'classmates-album-v7';
 const FILES_TO_CACHE = [
   '/class/',
   '/class/index.html',
-  '/class/style.css',
-  '/class/script.js',
+  '/class/style1.css',
+  '/class/script1.js',
   '/class/manifest.json',
   '/class/audio/song1.mp3',
   '/class/audio/song2.mp3',
@@ -62,4 +62,5 @@ self.addEventListener('fetch', (event) => {
       });
     })
   );
+
 });
