@@ -10,7 +10,6 @@ const FILES_TO_CACHE = [
   '/class/audio/song3.mp3',
   '/class/audio/song4.mp3',
   '/class/audio/song5.mp3',
-  '/class/audio/mysong.mp3',
   '/class/video/clip1.mp4',
   '/class/video/clip2.mp4',
   '/class/video/clip3.mp4',
@@ -67,4 +66,5 @@ self.addEventListener('fetch', (event) => {
       });
     })
   );
+
 });
