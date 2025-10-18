@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://k-vova.github.io/class/sitemap.xml
